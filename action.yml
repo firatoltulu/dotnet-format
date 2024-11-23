@@ -1,8 +1,8 @@
-name: "dotnet-format"
+name: "dotnet-format-8"
 
 description: "Run dotnet format and optionally apply any fixes"
 
-author: "xt0rted"
+author: "firatoltulu"
 
 branding:
   icon: "file-text"
