@@ -54,7 +54,7 @@ async function formatVersion3(options: FormatOptions): Promise<boolean> {
       return false;
     }
 
-    dotnetFormatOptions.push("--files", filesToCheck.join(","));
+    dotnetFormatOptions.push("--include", filesToCheck.join(","));
   }
 
   const dotnetPath: string = await which("dotnet", true);
