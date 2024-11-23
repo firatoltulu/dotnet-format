@@ -1,11 +1,9 @@
 export type DotNetFormatVersion =
-  | "3"
   | "8"
   
 ;
 
 const supportedVersions: DotNetFormatVersion[] = [
-  "3",
   "8"
 ];
 
