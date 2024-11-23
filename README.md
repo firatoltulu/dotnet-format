@@ -18,12 +18,7 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-
-      - name: Add dotnet-format problem matcher
-        uses: xt0rted/dotnet-format-problem-matcher@v1
-
-      - name: Restore dotnet tools
-        uses: xt0rted/dotnet-tool-restore@v1
+ 
 
       - name: Run dotnet format
         uses: firatoltulu/dotnet-format-8@v1.0.0
