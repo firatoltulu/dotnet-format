@@ -37,7 +37,7 @@ function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
 async function formatVersion8(options: FormatOptions): Promise<boolean> {
   const execOptions: ExecOptions = { ignoreReturnCode: true };
 
-  const dotnetFormatOptions = ["format", "--verify-no-changes"];
+  const dotnetFormatOptions = ["format", "--verify-no-changes","--verbosity"];
 
   if (options.noRestore) {
     dotnetFormatOptions.push("--no-restore");
@@ -54,7 +54,7 @@ async function formatVersion8(options: FormatOptions): Promise<boolean> {
       return false;
     }
 
-    dotnetFormatOptions.push("--include", filesToCheck.join(","));
+    dotnetFormatOptions.push("--include", filesToCheck.join(" "));
   }
 
   const dotnetPath: string = await which("dotnet", true);
