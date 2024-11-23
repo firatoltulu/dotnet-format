@@ -26,7 +26,7 @@ jobs:
         uses: xt0rted/dotnet-tool-restore@v1
 
       - name: Run dotnet format
-        uses: xt0rted/dotnet-format@v1
+        uses: firatoltulu/dotnet-format-8@v1.0.0
 ```
 
 Running on `pull_request`.
@@ -40,15 +40,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-
-      - name: Add dotnet-format problem matcher
-        uses: xt0rted/dotnet-format-problem-matcher@v1
-
-      - name: Restore dotnet tools
-        uses: xt0rted/dotnet-tool-restore@v1
-
+ 
       - name: Run dotnet format
-        uses: xt0rted/dotnet-format@v1
+        uses: firatoltulu/dotnet-format-8@v1.0.0
         with:
           only-changed-files: "true"
 ```
@@ -89,14 +83,12 @@ jobs:
           ref: ${{ steps.comment-branch.outputs.ref }}
           persist-credentials: false
 
-      - name: Restore dotnet tools
-        if: steps.command.outputs.command-name
-        uses: xt0rted/dotnet-tool-restore@v1
+ 
 
       - name: Run dotnet format
         if: steps.command.outputs.command-name && steps.command.outputs.command-arguments == 'format'
         id: format
-        uses: xt0rted/dotnet-format@v1
+        uses: firatoltulu/dotnet-format-8@v1.0.0
         with:
           action: "fix"
           only-changed-files: true
@@ -133,7 +125,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run dotnet format
-        uses: xt0rted/dotnet-format@v1
+        uses: firatoltulu/dotnet-format-8@v1.0.0
         with:
           only-changed-files: "true"
 ```
@@ -149,7 +141,7 @@ jobs:
       pull-requests: read
     steps:
       - name: Run dotnet format
-        uses: xt0rted/dotnet-format@v1
+        uses: firatoltulu/dotnet-format-8@v1.0.0
         with:
           only-changed-files: "true"
 ```
