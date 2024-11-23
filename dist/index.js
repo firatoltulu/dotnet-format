@@ -10970,7 +10970,7 @@ function formatOnlyChangedFiles(onlyChangedFiles) {
 }
 async function formatVersion8(options) {
     const execOptions = { ignoreReturnCode: true };
-    const dotnetFormatOptions = ["format", "--verify-no-changes"];
+    const dotnetFormatOptions = ["format", "--verify-no-changes", "--verbosity"];
     if (options.noRestore) {
         dotnetFormatOptions.push("--no-restore");
     }
@@ -10982,7 +10982,7 @@ async function formatVersion8(options) {
             (0, core_1.debug)("No files found for formatting");
             return false;
         }
-        dotnetFormatOptions.push("--include", filesToCheck.join(","));
+        dotnetFormatOptions.push("--include", filesToCheck.join(" "));
     }
     const dotnetPath = await (0, io_1.which)("dotnet", true);
     const dotnetResult = await (0, exec_1.exec)(`"${dotnetPath}"`, dotnetFormatOptions, execOptions);
