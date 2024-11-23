@@ -38,6 +38,14 @@ inputs:
     required: false
     default: "true"
 
+  severity:
+    description: "The minimum severity of diagnostics to fix"
+    required: false
+    default: "warn"
+    options:
+      - info
+      - warn
+      - error
 
 outputs:
   has-changes:

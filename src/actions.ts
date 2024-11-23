@@ -4,13 +4,14 @@ import {
   setOutput,
 } from "@actions/core";
 
-import { format } from "./dotnet";
+import { format, SeverityType } from "./dotnet";
 import { checkVersion } from "./version";
 
 export async function check(): Promise<void> {
   const onlyChangedFiles = getBooleanInput("only-changed-files");
   const failFast = getBooleanInput("fail-fast");
   const noRestore = getBooleanInput("no-restore");
+  const severity = getInput("severity") as SeverityType;
 
   const version = getInput("version", { required: true });
 
@@ -19,6 +20,7 @@ export async function check(): Promise<void> {
   const result = await format(dotnetFormatVersion)({
     noRestore,
     onlyChangedFiles,
+    severity,
   });
 
   setOutput("has-changes", result.toString());
@@ -32,6 +34,7 @@ export async function check(): Promise<void> {
 export async function fix(): Promise<void> {
   const onlyChangedFiles = getBooleanInput("only-changed-files");
   const noRestore = getBooleanInput("no-restore");
+  const severity = getInput("severity") as SeverityType;
 
   const version = getInput("version", { required: true });
 
@@ -40,6 +43,7 @@ export async function fix(): Promise<void> {
   const result = await format(dotnetFormatVersion)({
     noRestore,
     onlyChangedFiles,
+    severity,
   });
 
   setOutput("has-changes", result.toString());

@@ -15,9 +15,17 @@ import type { DotNetFormatVersion } from "./version";
 
 export type FormatFunction = (options: FormatOptions) => Promise<boolean>;
 
+export type SeverityType =
+  | "info"
+  | "warning"
+  | "error"
+;
+
+
 export interface FormatOptions {
   onlyChangedFiles: boolean;
   noRestore: boolean;
+  severity: SeverityType;
 }
 
 function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
@@ -41,6 +49,10 @@ async function formatVersion8(options: FormatOptions): Promise<boolean> {
 
   if (options.noRestore) {
     dotnetFormatOptions.push("--no-restore");
+  }
+
+  if(options.severity) {
+    dotnetFormatOptions.push("--severity", options.severity);
   }
 
   if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
