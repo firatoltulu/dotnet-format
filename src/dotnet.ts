@@ -34,14 +34,14 @@ function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
   return false;
 }
 
-async function formatVersion3(options: FormatOptions): Promise<boolean> {
+async function formatVersion8(options: FormatOptions): Promise<boolean> {
   const execOptions: ExecOptions = { ignoreReturnCode: true };
 
-  const dotnetFormatOptions = ["format", "--check"];
+  const dotnetFormatOptions = ["format", "--verify-no-changes"];
 
-  if (options.dryRun) {
-    dotnetFormatOptions.push("--dry-run");
-  }
+  // if (options.dryRun) {
+  //   dotnetFormatOptions.push("--dry-run");
+  // }
 
   if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
     const filesToCheck = await getPullRequestFiles();
@@ -66,7 +66,7 @@ async function formatVersion3(options: FormatOptions): Promise<boolean> {
 export function format(version: DotNetFormatVersion): FormatFunction {
   switch (version || "") {
     case "8":
-      return formatVersion3;
+      return formatVersion8;
 
     default:
       throw Error(`dotnet-format version "${version}" is unsupported`);

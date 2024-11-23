@@ -10966,12 +10966,12 @@ function formatOnlyChangedFiles(onlyChangedFiles) {
     }
     return false;
 }
-async function formatVersion3(options) {
+async function formatVersion8(options) {
     const execOptions = { ignoreReturnCode: true };
-    const dotnetFormatOptions = ["format", "--check"];
-    if (options.dryRun) {
-        dotnetFormatOptions.push("--dry-run");
-    }
+    const dotnetFormatOptions = ["format", "--verify-no-changes"];
+    // if (options.dryRun) {
+    //   dotnetFormatOptions.push("--dry-run");
+    // }
     if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
         const filesToCheck = await (0, files_1.getPullRequestFiles)();
         (0, core_1.info)(`Checking ${filesToCheck.length} files`);
@@ -10989,7 +10989,7 @@ async function formatVersion3(options) {
 function format(version) {
     switch (version || "") {
         case "8":
-            return formatVersion3;
+            return formatVersion8;
         default:
             throw Error(`dotnet-format version "${version}" is unsupported`);
     }
