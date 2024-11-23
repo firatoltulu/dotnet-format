@@ -16,8 +16,8 @@ import type { DotNetFormatVersion } from "./version";
 export type FormatFunction = (options: FormatOptions) => Promise<boolean>;
 
 export interface FormatOptions {
-  dryRun: boolean;
   onlyChangedFiles: boolean;
+  noRestore: boolean;
 }
 
 function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
@@ -39,9 +39,9 @@ async function formatVersion8(options: FormatOptions): Promise<boolean> {
 
   const dotnetFormatOptions = ["format", "--verify-no-changes"];
 
-  // if (options.dryRun) {
-  //   dotnetFormatOptions.push("--dry-run");
-  // }
+  if (options.noRestore) {
+    dotnetFormatOptions.push("--no-restore");
+  }
 
   if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
     const filesToCheck = await getPullRequestFiles();

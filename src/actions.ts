@@ -10,12 +10,14 @@ import { checkVersion } from "./version";
 export async function check(): Promise<void> {
   const onlyChangedFiles = getBooleanInput("only-changed-files");
   const failFast = getBooleanInput("fail-fast");
+  const noRestore = getBooleanInput("no-restore");
+
   const version = getInput("version", { required: true });
 
   const dotnetFormatVersion = checkVersion(version);
 
   const result = await format(dotnetFormatVersion)({
-    dryRun: true,
+    noRestore,
     onlyChangedFiles,
   });
 
@@ -29,12 +31,14 @@ export async function check(): Promise<void> {
 
 export async function fix(): Promise<void> {
   const onlyChangedFiles = getBooleanInput("only-changed-files");
+  const noRestore = getBooleanInput("no-restore");
+
   const version = getInput("version", { required: true });
 
   const dotnetFormatVersion = checkVersion(version);
 
   const result = await format(dotnetFormatVersion)({
-    dryRun: false,
+    noRestore,
     onlyChangedFiles,
   });
 

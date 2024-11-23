@@ -33,6 +33,12 @@ inputs:
     required: false
     default: "true"
 
+  no-restore:
+    description: "Doesn't execute an implicit restore before formatting. Default is to do implicit restore."
+    required: false
+    default: "true"
+
+
 outputs:
   has-changes:
     description: "A value indicating if any files were formatted"
