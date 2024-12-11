@@ -9,6 +9,11 @@ branding:
   color: "purple"
 
 inputs:
+
+  project:
+    description: "Project or solution file Path"
+    required: false
+
   repo-token:
     description: "GITHUB_TOKEN token or a repo scoped PAT"
     required: true

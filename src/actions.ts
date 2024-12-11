@@ -10,6 +10,8 @@ import { checkVersion } from "./version";
 export async function check(): Promise<void> {
   const onlyChangedFiles = getBooleanInput("only-changed-files");
   const failFast = getBooleanInput("fail-fast");
+  const project = getInput("project");
+
   const noRestore = getBooleanInput("no-restore");
   const severity = getInput("severity") as SeverityType;
 
@@ -21,6 +23,7 @@ export async function check(): Promise<void> {
     noRestore,
     onlyChangedFiles,
     severity,
+    project,
   });
 
   setOutput("has-changes", result.toString());

@@ -19,13 +19,14 @@ export type SeverityType =
   | "info"
   | "warning"
   | "error"
-;
+  ;
 
 
 export interface FormatOptions {
   onlyChangedFiles: boolean;
   noRestore: boolean;
   severity: SeverityType;
+  project?: string;
 }
 
 function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
@@ -45,13 +46,19 @@ function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
 async function formatVersion8(options: FormatOptions): Promise<boolean> {
   const execOptions: ExecOptions = { ignoreReturnCode: true };
 
-  const dotnetFormatOptions = ["format", "--verify-no-changes","--verbosity"];
+  const dotnetFormatOptions = ["format"];
+
+  if (options.project) {
+    dotnetFormatOptions.push(options.project);
+  }
+
+  dotnetFormatOptions.push("--verify-no-changes", "--verbosity");
 
   if (options.noRestore) {
     dotnetFormatOptions.push("--no-restore");
   }
 
-  if(options.severity) {
+  if (options.severity) {
     dotnetFormatOptions.push("--severity", options.severity);
   }
 

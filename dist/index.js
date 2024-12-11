@@ -10916,6 +10916,7 @@ const version_1 = __nccwpck_require__(311);
 async function check() {
     const onlyChangedFiles = (0, core_1.getBooleanInput)("only-changed-files");
     const failFast = (0, core_1.getBooleanInput)("fail-fast");
+    const project = (0, core_1.getInput)("project");
     const noRestore = (0, core_1.getBooleanInput)("no-restore");
     const severity = (0, core_1.getInput)("severity");
     const version = (0, core_1.getInput)("version", { required: true });
@@ -10924,6 +10925,7 @@ async function check() {
         noRestore,
         onlyChangedFiles,
         severity,
+        project,
     });
     (0, core_1.setOutput)("has-changes", result.toString());
     // fail fast will cause the workflow to stop on this job
@@ -10974,7 +10976,11 @@ function formatOnlyChangedFiles(onlyChangedFiles) {
 }
 async function formatVersion8(options) {
     const execOptions = { ignoreReturnCode: true };
-    const dotnetFormatOptions = ["format", "--verify-no-changes", "--verbosity"];
+    const dotnetFormatOptions = ["format"];
+    if (options.project) {
+        dotnetFormatOptions.push(options.project);
+    }
+    dotnetFormatOptions.push("--verify-no-changes", "--verbosity");
     if (options.noRestore) {
         dotnetFormatOptions.push("--no-restore");
     }
