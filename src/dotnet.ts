@@ -27,6 +27,7 @@ export interface FormatOptions {
   noRestore: boolean;
   severity: SeverityType;
   project?: string;
+  diagnostics?:string;
 }
 
 function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
@@ -56,6 +57,10 @@ async function formatVersion8(options: FormatOptions): Promise<boolean> {
 
   if (options.noRestore) {
     dotnetFormatOptions.push("--no-restore");
+  }
+
+  if (options.diagnostics) {
+    dotnetFormatOptions.push("--diagnostics", options.diagnostics);
   }
 
   if (options.severity) {
