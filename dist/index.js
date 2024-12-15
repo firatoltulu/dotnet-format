@@ -10917,6 +10917,7 @@ async function check() {
     const onlyChangedFiles = (0, core_1.getBooleanInput)("only-changed-files");
     const failFast = (0, core_1.getBooleanInput)("fail-fast");
     const project = (0, core_1.getInput)("project");
+    const diagnostics = (0, core_1.getInput)("diagnostics");
     const noRestore = (0, core_1.getBooleanInput)("no-restore");
     const severity = (0, core_1.getInput)("severity");
     const version = (0, core_1.getInput)("version", { required: true });
@@ -10926,6 +10927,7 @@ async function check() {
         onlyChangedFiles,
         severity,
         project,
+        diagnostics,
     });
     (0, core_1.setOutput)("has-changes", result.toString());
     // fail fast will cause the workflow to stop on this job
@@ -10983,6 +10985,9 @@ async function formatVersion8(options) {
     dotnetFormatOptions.push("--verify-no-changes", "--verbosity");
     if (options.noRestore) {
         dotnetFormatOptions.push("--no-restore");
+    }
+    if (options.diagnostics) {
+        dotnetFormatOptions.push("--diagnostics", options.diagnostics);
     }
     if (options.severity) {
         dotnetFormatOptions.push("--severity", options.severity);
