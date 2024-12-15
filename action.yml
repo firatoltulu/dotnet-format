@@ -38,6 +38,10 @@ inputs:
     required: false
     default: "true"
 
+  diagnostics:
+    description: "Output diagnostics to the console"
+    required: false
+
   no-restore:
     description: "Doesn't execute an implicit restore before formatting. Default is to do implicit restore."
     required: false
