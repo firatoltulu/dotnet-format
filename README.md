@@ -1,8 +1,5 @@
 # GitHub Action for dotnet-format
 
-[![CI](https://github.com/xt0rted/dotnet-format/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/xt0rted/dotnet-format/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/xt0rted/dotnet-formatc/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/xt0rted/dotnet-format/actions/workflows/codeql-analysis.yml)
-
 Run [dotnet-format](https://github.com/dotnet/format) v3 as part of your workflow to report formatting errors or auto fix violations as part of your pull request workflow.
 
 ## Usage
@@ -164,6 +161,5 @@ Name | Description
 -- | --
 `has-changes` | If any files were found to have violations or had fixes applied. Will be a string value of `true` or `false`.
 
-## License
 
-The scripts and documentation in this project are released under the [MIT License](LICENSE)
+This action is based on xt0rted/dotnet-format, updated and maintained to support modern .NET versions.
