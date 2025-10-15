@@ -162,4 +162,4 @@ Name | Description
 `has-changes` | If any files were found to have violations or had fixes applied. Will be a string value of `true` or `false`.
 
 
-This action is based on xt0rted/dotnet-format, updated and maintained to support modern .NET versions.
+This action is based on ([https://xt0rted/dotnet-format](https://github.com/xt0rted/dotnet-format)), updated and maintained to support modern .NET versions.
